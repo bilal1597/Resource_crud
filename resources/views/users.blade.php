@@ -36,7 +36,12 @@
                                     <td>{{$item ->age}} </td>
                                     <td>{{$item ->city}} </td>
                                     <td> <a class="btn  btn-info" href="{{route('users.show',$item->id)}}">Edit</a></td>
-                                    <td> <a class="btn  btn-danger" href="">Delete</a></td>
+                                    <td> <form action="{{route('users.destroy', $item ->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('Are you sure you want to delete this user?');" >Delete</button>
+                                    </form> </td>
                                 </tr>
                                 @endforeach
                             </tbody>

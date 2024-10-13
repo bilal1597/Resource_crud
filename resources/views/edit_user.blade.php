@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-    <h1>Edit</h1>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Edit User</h1>
+            </div>
+            {{-- @if (Session::has('fail'))
+                <span class="alert alert-danger p-2">{{Session::get('fail')}}</span>
+            @endif --}}
+            <div class="card-body">
+                <form action="{{route('users.update', $user->id)}}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <form>
+                        <input type="hidden" name="id" value="{{$user->id}}" >
+                        <div class="mb-3">
+                            <label for="exampleInputname" class="form-label">Full Name</label>
+                            <input type="text" name="name" value="{{$user->name}}" class="form-control " id="exampleInputname" placeholder="Enter Full Name">
+                            @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                          </div>
+                          <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Email</label>
+                            <input name="email" type="email" value="{{$user->email}}" class="form-control" id="formGroupExampleInput2" placeholder="Enter Email">
+                            @error('email')
+                            <span class="text-danger">{{$message}} </span>
+                        @enderror
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">Age</label><br>
+                            <input name="age" type="number" value="{{$user->age}}" class="form-control" id="formGroupExampleInput2" placeholder="Enter Age">
+                            @error('age')
+                            <span class="text-danger">{{$message}} </span>
+                        @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput2" class="form-label">City</label><br>
+                            <input name="city" type="text" value="{{$user->city}}" class="form-control" id="formGroupExampleInput2" placeholder="Enter City Name">
+                            @error('city')
+                            <span class="text-danger">{{$message}} </span>
+                        @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
+                      </form>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
