@@ -33,10 +33,13 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required | email | unique:users,email',
+            'batch' => 'required|integer|max:2024',
             'password' => 'required | min:5',
             'password_confirm' => 'same:password',
             'age' => 'required | max:150',
-            'city' => 'required'
+            'city' => 'required|string|max:255 ',
+            'country' => 'required|string|max:255',
+            'gender' => 'required'
         ]);
         $user = User::create($data);
         if ($user) {
@@ -69,13 +72,15 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'batch' => 'required|integer|max:2024',
             'age' => 'required | max:150',
-            'city' => 'required'
+            'city' => 'required|string|max:255 ',
+            'country' => 'required|string|max:255',
+            'gender' => 'required|in:Male,Female'
         ]);
         $user = User::where('id', $request->id)->update($data);
-        if ($user) {
-            return redirect()->with('User is Successfully Updated');
-        }
+
+        return redirect()->route("users.index")->with('User is Successfully Updated');
     }
 
     /**

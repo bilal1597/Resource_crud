@@ -37,6 +37,13 @@
                         @enderror
                         </div>
 
+                        <div class="mb-3">
+                            <label for="exampleInputbatch" class="form-label">Batch</label>
+                            <input type="number" name="batch" value="{{$user->batch}}" class="form-control " id="exampleInputbatch" placeholder="Enter Batch Year">
+                            @error('batch')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
+                          </div>
 
                         <div class="mb-3">
                             <label for="formGroupExampleInput2" class="form-label">Age</label><br>
@@ -46,12 +53,48 @@
                         @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="formGroupExampleInput2" class="form-label">City</label><br>
-                            <input name="city" type="text" value="{{$user->city}}" class="form-control" id="formGroupExampleInput2" placeholder="Enter City Name">
+                            <label for="exampleSelect"  class="form-label">City</label>
+                            <select name="city"  class="form-select" id="exampleSelect">
+                                {{-- <option selected>{{$user->city}}</option> --}}
+                                <option value="Karachi" {{$user->city == 'Karachi' ? 'selected' : ''}}> Karachi</option>
+                                <option value="Rwp" {{$user->city == 'Rwp' ? 'selected' : ''}}> Rwp</option>
+                                <option value="Islamabad" {{$user->city == 'Islamabad' ? 'selected' : ''}} >Islamabad</option>
+                            </select>
                             @error('city')
                             <span class="text-danger">{{$message}} </span>
                         @enderror
                         </div>
+
+                        <div class="mb-3">
+                            <label for="exampleSelect" class="form-label">Country</label>
+                            <select name="country" class="form-select" id="exampleSelect">
+                                {{-- <option selected>{{$user ->country }}</option> --}}
+                                <option value="Pakistan" {{$user->country == 'Pakistan' ? 'selected' : ''}}> Pakistan</option>
+                                <option value="India" {{$user->country == 'India' ? 'selected' : ''}}> India</option>
+                                <option value="Srilanka" {{$user->country == 'Srilanka' ? 'selected' : ''}}> Srilanka</option>
+                            </select>
+                            @error('country')
+                            <span class="text-danger">{{$message}} </span>
+                        @enderror
+                        </div>
+
+                        <div class="mb3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1" value="Male" {{ $user->gender == 'Male' ? 'checked' : '' }} >
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  Male
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2" value="Female" {{ $user->gender == 'Female' ? 'checked' : '' }} >
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Female
+                                </label>
+                              </div>
+                              @error('gender')
+                              <span class="text-danger">{{$message}} </span>
+                          @enderror
+                        </div> <br>
 
                         <button type="submit" class="btn btn-primary">Save</button>
                       </form>

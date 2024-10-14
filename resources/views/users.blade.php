@@ -23,8 +23,11 @@
                               <th scope="col">ID</th>
                               <th scope="col">Name</th>
                               <th scope="col">Email</th>
+                              <th scope="col">Batch</th>
                               <th scope="col">Age</th>
                               <th scope="col">City</th>
+                              <th scope="col">Country</th>
+                              <th scope="col">Gender</th>
                               <th scope="col" colspan="2">Actions</th>
                             </tr>
                             <tbody>
@@ -33,8 +36,11 @@
                                     <td>{{$item ->id}} </td>
                                     <td>{{$item ->name}} </td>
                                     <td>{{$item ->email}} </td>
+                                    <td>{{$item ->batch}}</td>
                                     <td>{{$item ->age}} </td>
                                     <td>{{$item ->city}} </td>
+                                    <td>{{$item ->country}}</td>
+                                    <td>{{$item ->gender}}</td>
                                     <td> <a class="btn  btn-info" href="{{route('users.show',$item->id)}}">Edit</a></td>
                                     <td> <form action="{{route('users.destroy', $item ->id)}}" method="POST">
                                         @csrf
